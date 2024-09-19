@@ -2,6 +2,7 @@ package dev.be.pharmacyfind.api.service;
 
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import dev.be.pharmacyfind.api.dto.KakaoApiResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -22,7 +22,7 @@ public class KakaoAddressSearchService {
 	private final RestTemplate restTemplate;
 	private final KakaoUriBuilderService kakaoUriBuilderService;
 
-	@Value("${KAKAO_REST_API_KEY}")
+	@Value("${kakao.rest.api.key}")
 	private String kakaoRestApiKey;
 
 	public KakaoApiResponseDto requestAddressSearch(String address) {
