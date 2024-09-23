@@ -7,9 +7,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import dev.be.pharmacyfind.api.dto.DocumentDto;
 import dev.be.pharmacyfind.direction.entity.Direction;
+import dev.be.pharmacyfind.direction.repository.DirectionRepository;
 import dev.be.pharmacyfind.pharmacy.dto.PharmacyDto;
 import dev.be.pharmacyfind.pharmacy.service.PharmacySearchService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,13 @@ public class DirectionService {
 	private static final double RADIUS_KM = 10.0; // 반경 10 km
 
 	private final PharmacySearchService pharmacySearchService;
+	private final DirectionRepository directionRepository;
+
+	@Transactional
+	public List<Direction> saveAll(List<Direction> directionList) {
+		if (CollectionUtils.isEmpty(directionList)) return Collections.emptyList();
+		return directionRepository.saveAll(directionList);
+	}
 
 	public List<Direction> buildDirectionList(DocumentDto documentDto) {
 

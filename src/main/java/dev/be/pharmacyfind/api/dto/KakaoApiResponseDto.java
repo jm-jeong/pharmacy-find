@@ -17,5 +17,5 @@ public class KakaoApiResponseDto {
 	private MetaDto metaDto;
 
 	@JsonProperty("documents")
-	private List<DocumentDto> documentDtos;
+	private List<DocumentDto> documentList;
 }
